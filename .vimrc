@@ -35,6 +35,7 @@ colorscheme solarized
 augroup filetypedetect 
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig 
     autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
+    autocmd FileType java,sh set sw=2 sts=2
 augroup END 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
