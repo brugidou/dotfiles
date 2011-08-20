@@ -34,20 +34,20 @@ colorscheme solarized
 
 augroup filetypedetect 
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig 
-    autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
+    autocmd FileType ruby,eruby,yaml set sw=2 sts=2
     autocmd FileType java,sh set sw=2 sts=2
 augroup END 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Other
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Always activate the mouse
+set mouse=a
 
+" Autoread updated files
 set autoread
 
-set ruler       "Always show current position
-set cmdheight=2 "The commandbar height
-
-" Set backspace config
+" Allow backspacing anytime
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
@@ -63,7 +63,6 @@ set noerrorbells
 set novisualbell
 "set t_vb=
 
-set nu
 set encoding=utf8
 try
     lang en_US
@@ -71,28 +70,33 @@ catch
 endtry
 set ffs=unix,dos,mac "Default file types
 
-
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
 set nowb
 set noswapfile
 
-
+" Tabs as space of 4 (by default)
 set expandtab
+set smarttab
 set shiftwidth=4
 set tabstop=4
-set smarttab
 
 set lbr
 set tw=500
 
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
+" Autoindent and wrap lines
+set autoindent
+set smartindent
+set wrap
 
-" Always hide the statusline
-set laststatus=2
+" Line numbers
+set number
 
+" Status line
+set ruler           "Always show current position
+set cmdheight=2     "The commandbar height
+set showcmd         "Show command being typed at the bottom
+set laststatus=2    "Always show the statusline
 " Format the statusline
 set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
