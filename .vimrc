@@ -20,9 +20,9 @@ filetype plugin indent on
 " => Solarized
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"set gfn=Bitstream\ Vera\ Sans\ Mono:h10
-
+" set gfn=Bitstream\ Vera\ Sans\ Mono:h10
 " set guioptions-=T
+"
 set t_Co=256
 syntax enable
 set background=dark
@@ -81,8 +81,13 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-set lbr
-set tw=500
+set linebreak
+set textwidth=80
+
+" Auto-wrap comments and allow "gq" formatting
+" Trailing white space indicates a paragraph continues in the next line. 
+" A line that ends in a non-white character ends a paragraph.
+set formatoptions=cqw
 
 " Autoindent and wrap lines
 set autoindent
@@ -99,7 +104,6 @@ set showcmd         "Show command being typed at the bottom
 set laststatus=2    "Always show the statusline
 " Format the statusline
 set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-
 
 function! CurDir()
     let curdir = substitute(getcwd(), "/home/maxime", "~/", "g")
