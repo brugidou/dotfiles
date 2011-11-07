@@ -12,6 +12,7 @@ call vundle#rc()
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'pig.vim'
 Bundle 'VimClojure'
+Bundle 'tpope/vim-fugitive'
 
 filetype plugin indent on
 
