@@ -19,3 +19,5 @@ fi
 #alias l='ls -CF'
 
 alias rm='rm -i'
+alias dinauz='ssh -t dinauz screen -r'
+alias dinauzx='ssh -t dinauz screen -x'
