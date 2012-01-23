@@ -20,4 +20,5 @@ fi
 
 alias rm='rm -i'
 alias dinauz='ssh -t dinauz screen -r'
+alias dinauzrd='ssh -t dinauz screen -rd'
 alias dinauzx='ssh -t dinauz screen -x'
