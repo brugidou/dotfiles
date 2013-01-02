@@ -11,6 +11,7 @@ call vundle#rc()
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'pig.vim'
+Bundle 'derekwyatt/vim-scala'
 Bundle 'VimClojure'
 Bundle 'tpope/vim-fugitive'
 
@@ -35,6 +36,7 @@ colorscheme solarized
 
 augroup filetypedetect 
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig 
+    au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
     autocmd FileType ruby,eruby,yaml set sw=2 sts=2
     autocmd FileType java,sh set sw=2 sts=2
 augroup END 
