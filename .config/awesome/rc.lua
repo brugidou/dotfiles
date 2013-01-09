@@ -260,10 +260,14 @@ globalkeys = awful.util.table.join(
     -- print screen
     awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
 
-    --volume controls
+    --volume/audio controls
+    awful.key({}, "XF86Tools", function () awful.util.spawn("spotify") end),
+    awful.key({}, "XF86AudioPlay", function () awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end),
     awful.key({}, "XF86AudioMute",      function () awful.util.spawn("amixer sset Master toggle") end),
     awful.key({}, "XF86AudioLowerVolume",      function () awful.util.spawn("amixer sset Master 2dB- unmute") end),
-    awful.key({}, "XF86AudioRaiseVolume",      function () awful.util.spawn("amixer sset Master 2dB+ unmute") end)
+    awful.key({}, "XF86AudioRaiseVolume",      function () awful.util.spawn("amixer sset Master 2dB+ unmute") end),
+    -- Home = chromium
+    awful.key({}, "XF86HomePage", function () awful.util.spawn("chromium") end)
 )
 
 clientkeys = awful.util.table.join(
