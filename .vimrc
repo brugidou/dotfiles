@@ -92,6 +92,10 @@ set textwidth=80
 " A line that ends in a non-white character ends a paragraph.
 set formatoptions=cqw
 
+" Highlight trailing whitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 " Autoindent and wrap lines
 set autoindent
 set smartindent
