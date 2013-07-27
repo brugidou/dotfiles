@@ -396,4 +396,5 @@ os.execute("xset -b") -- remove beep
 awful.util.spawn_with_shell("xscreensaver -no-splash")
 awful.util.spawn_with_shell("wicd-client -t")
 awful.util.spawn_with_shell("volumeicon")
+awful.util.spawn_with_shell("fdpowermon")
 os.execute("synergys --restart --config ~/.config/synergy/synergy.conf --log ~/synergys.log")
