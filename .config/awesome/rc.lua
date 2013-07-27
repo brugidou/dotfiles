@@ -395,4 +395,5 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 os.execute("xset -b") -- remove beep
 awful.util.spawn_with_shell("xscreensaver -no-splash")
 awful.util.spawn_with_shell("wicd-client -t")
+awful.util.spawn_with_shell("volumeicon")
 os.execute("synergys --restart --config ~/.config/synergy/synergy.conf --log ~/synergys.log")
