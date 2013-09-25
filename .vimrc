@@ -2,7 +2,7 @@ set history=300
 set nocompatible
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle 
+" => Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype off
@@ -34,12 +34,11 @@ colorscheme solarized
 " => FileTypes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-augroup filetypedetect 
-    au BufNewFile,BufRead *.pig set filetype=pig syntax=pig 
+augroup filetypedetect
+    au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
     au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
-    autocmd FileType ruby,eruby,yaml set sw=2 sts=2
-    autocmd FileType java,sh set sw=2 sts=2
-augroup END 
+    autocmd FileType ruby,eruby,yaml,java,sh,javascript set sw=2 sts=2
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Other
@@ -88,7 +87,7 @@ set linebreak
 set textwidth=80
 
 " Auto-wrap comments and allow "gq" formatting
-" Trailing white space indicates a paragraph continues in the next line. 
+" Trailing white space indicates a paragraph continues in the next line.
 " A line that ends in a non-white character ends a paragraph.
 set formatoptions=cqw
 
