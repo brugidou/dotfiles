@@ -4,3 +4,5 @@
 [color]
     diff = auto
 	status = true
+[push]
+	default = simple
