@@ -395,6 +395,6 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 os.execute("xset -b") -- remove beep
 awful.util.spawn_with_shell("xscreensaver -no-splash")
 awful.util.spawn_with_shell("nm-applet")
-awful.util.spawn_with_shell("volumeicon")
+awful.util.spawn_with_shell("gnome-sound-applet")
 awful.util.spawn_with_shell("fdpowermon")
 os.execute("synergys --restart --config ~/.config/synergy/synergy.conf --log ~/synergys.log")
