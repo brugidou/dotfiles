@@ -14,6 +14,7 @@ Bundle 'pig.vim'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'VimClojure'
 Bundle 'tpope/vim-fugitive'
+Bundle 'jakar/vim-json'
 
 filetype plugin indent on
 
@@ -37,7 +38,7 @@ colorscheme solarized
 augroup filetypedetect
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
     au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
-    autocmd FileType ruby,eruby,yaml,java,sh,javascript set sw=2 sts=2
+    autocmd FileType ruby,eruby,yaml,java,sh,javascript,json set sw=2 sts=2
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
