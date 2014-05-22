@@ -38,7 +38,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 -- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
-beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua" )
+beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/light/theme.lua" )
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -392,10 +392,3 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 
 -- additional configs (Maxime)
-os.execute("xset -b") -- remove beep
-awful.util.spawn_with_shell("xscreensaver -no-splash")
-awful.util.spawn_with_shell("nm-applet")
-awful.util.spawn_with_shell("gnome-sound-applet")
-awful.util.spawn_with_shell("fdpowermon")
-awful.util.spawn_with_shell("gajim")
-os.execute("synergys --restart --config ~/.config/synergy/synergy.conf --log ~/synergys.log")
