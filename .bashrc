@@ -94,3 +94,6 @@ esac
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# added by travis gem
+[ -f /home/m.brugidou/.travis/travis.sh ] && source /home/m.brugidou/.travis/travis.sh
