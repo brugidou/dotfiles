@@ -97,3 +97,40 @@ fi
 
 # added by travis gem
 [ -f /home/m.brugidou/.travis/travis.sh ] && source /home/m.brugidou/.travis/travis.sh
+
+within-bundled-project()
+{
+    local dir="$(pwd)"
+    while [ "$(dirname $dir)" != "/" ]; do
+        [ -f "$dir/Gemfile" ] && return
+        dir="$(dirname $dir)"
+    done
+    false
+}
+
+run-with-bundler()
+{
+    if twithin-bundled-project; then
+        bundle exec "$@"
+    else
+        "$@"
+    fi
+}
+
+BUNDLED_COMMANDS="${BUNDLED_COMMANDS:-
+chef-apply
+chef
+chef-solo
+foodcritic
+kitchen
+knife
+rake
+rspec
+ruby
+}"
+
+for CMD in $BUNDLED_COMMANDS; do
+    if [[ $CMD != "bundle" && $CMD != "gem" ]]; then
+        alias $CMD="run-with-bundler $CMD"
+    fi
+done
