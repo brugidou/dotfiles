@@ -110,7 +110,7 @@ within-bundled-project()
 
 run-with-bundler()
 {
-    if twithin-bundled-project; then
+    if within-bundled-project; then
         bundle exec "$@"
     else
         "$@"
