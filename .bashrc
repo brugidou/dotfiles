@@ -134,3 +134,6 @@ for CMD in $BUNDLED_COMMANDS; do
         alias $CMD="run-with-bundler $CMD"
     fi
 done
+
+# Mesos CLI completion
+complete -C mesos-completion mesos

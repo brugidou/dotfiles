@@ -38,7 +38,7 @@
 
 *background:            S_base03
 *foreground:            S_base00
-*fading:                40
+*fading:                10
 *fadeColor:             S_base03
 *cursorColor:           S_base1
 *pointerColorBackground:S_base01
@@ -90,3 +90,4 @@ URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: chromium
 URxvt.matcher.button: 1
 Urxvt.mouseWheelScrollPage: true
+URxvt.saveLines: 200000
