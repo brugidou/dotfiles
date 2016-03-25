@@ -119,7 +119,6 @@ run-with-bundler()
 
 BUNDLED_COMMANDS="${BUNDLED_COMMANDS:-
 chef-apply
-chef
 chef-solo
 foodcritic
 kitchen
