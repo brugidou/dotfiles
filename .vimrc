@@ -89,8 +89,8 @@ set textwidth=80
 
 " Auto-wrap comments and allow "gq" formatting
 " Trailing white space indicates a paragraph continues in the next line.
-" A line that ends in a non-white character ends a paragraph.
-set formatoptions=cqw
+" Autoformat when inserting/deleting text in paragraphs
+set formatoptions=cwqa
 
 " Highlight trailing whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red

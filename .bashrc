@@ -118,6 +118,7 @@ run-with-bundler()
 }
 
 BUNDLED_COMMANDS="${BUNDLED_COMMANDS:-
+chef
 chef-apply
 chef-solo
 foodcritic
@@ -126,6 +127,7 @@ knife
 rake
 rspec
 ruby
+rubocop
 }"
 
 for CMD in $BUNDLED_COMMANDS; do
