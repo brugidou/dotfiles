@@ -77,12 +77,12 @@
 *color15:               S_base3
 
 ! Set xterm font
-xterm*font: terminus-28
+xterm*font: terminus-24
 ! Make words with -,@,.,etc... selectable by double-click
 xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 
 ! Same of urxvt
-URxvt.font: terminus-28
+URxvt.font: terminus-24
 URxvt.cutchars: "`\"'&()*,:;<=>?[\\]^{|}$"
 URxvt.scrollBar: false
 URxvt.visualBell: true
