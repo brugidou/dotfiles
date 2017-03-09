@@ -98,6 +98,12 @@ fi
 # added by travis gem
 [ -f /home/m.brugidou/.travis/travis.sh ] && source /home/m.brugidou/.travis/travis.sh
 
+if which ruby >/dev/null && which gem >/dev/null; then
+    GEM_HOME=$(/usr/bin/ruby -rubygems -e 'puts Gem.user_dir')
+    PATH="$GEM_HOME/bin:$PATH"
+    export GEM_HOME
+fi
+
 within-bundled-project()
 {
     local dir="$(pwd)"
