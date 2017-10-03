@@ -130,6 +130,7 @@ chef-solo
 foodcritic
 kitchen
 knife
+rails
 rake
 rspec
 ruby
