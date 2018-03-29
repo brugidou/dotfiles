@@ -99,7 +99,7 @@ fi
 [ -f /home/m.brugidou/.travis/travis.sh ] && source /home/m.brugidou/.travis/travis.sh
 
 if which ruby >/dev/null && which gem >/dev/null; then
-    GEM_HOME=$(/usr/bin/ruby -rubygems -e 'puts Gem.user_dir')
+    GEM_HOME=$(/usr/bin/ruby -rrubygems -e 'puts Gem.user_dir')
     PATH="$GEM_HOME/bin:$PATH"
     export GEM_HOME
 fi
