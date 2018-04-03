@@ -3,7 +3,7 @@
 # Remove beep
 xset -b
 
-xscreensaver -no-splash &
+systemctl --user start xscreensaver
 
 # NetworkManager applet
 nm-applet &
