@@ -6,6 +6,7 @@ apt install laptop-mode-tools fdpowermon
 # Grand sudo access
 apt install sudo
 usermod -aG sudo m.brugidou
+apt install krb5-user
 
 # Get all submodules
 sudo -u m.brugidou git submodule update --init
