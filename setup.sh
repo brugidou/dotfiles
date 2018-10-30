@@ -28,3 +28,5 @@ gem install bundler
 
 # Screensaver
 apt install xscreensaver
+
+apt install volumeicon-alsa
