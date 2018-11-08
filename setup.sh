@@ -30,3 +30,6 @@ gem install bundler
 apt install xscreensaver
 
 apt install volumeicon-alsa
+
+# Update daily
+apt install unattended-upgrades
