@@ -26,6 +26,9 @@ update-alternatives --set x-terminal-emulator /usr/bin/urxvt
 apt install ruby ruby-dev libyajl-dev build-essential libxml2-dev
 gem install bundler
 
+# Nodejs + Npm
+apt install npm
+
 # Screensaver
 apt install xscreensaver
 
