@@ -4,3 +4,5 @@
 [submodule ".config/awesome/themes/awesome-solarized"]
 	path = .config/awesome/themes/awesome-solarized
 	url = https://github.com/cycojesus/awesome-solarized.git
+[submodule ".config/awesome/themes/awesome-solarized/"]
+	url = https://github.com/funtaps/awesome-solarized.git
