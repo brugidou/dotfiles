@@ -1,6 +1,10 @@
 #!/bin/bash
 
-apt install xorg awesome chromium
+# firmwares
+apt install fwupd
+fwupdmgr update
+
+apt install xorg awesome chromium arandr
 apt install laptop-mode-tools fdpowermon
 
 # Grand sudo access
@@ -31,10 +35,14 @@ apt install npm
 
 # Screensaver
 apt install xscreensaver
+# Screen backlight
+apt install xbacklight
 # Screenshots
 apt install flameshot
 
-apt install volumeicon-alsa
+# Bluetooth
+apt install blueman
+apt install volumeicon-alsa alsa-utils pavucontrol
 
 # Update daily
 apt install unattended-upgrades
@@ -54,15 +62,18 @@ mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
 chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg
 chown root:root /etc/apt/sources.list.d/microsoft-prod.list
 apt update
-apt install dotnet-sdk-2.1
 apt install dotnet-sdk-3.1
 
-#TODO: download and install zoom
+# Zoom
+wget https://zoom.us/client/latest/zoom_amd64.deb
+apt install ./zoom_amd64.deb
 
 # tooling like add-apt-repository
 apt-get install software-properties-common
 # Install JDK 8 from Adoptopenjdk and set it by default
 wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
-add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+cat > /etc/apt/sources.list.d/jfrog.list <<EOF
+deb [arch=amd64] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ stretch main
+EOF
 apt-get install adoptopenjdk-8-hotspot
 update-alternatives --set java /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java
