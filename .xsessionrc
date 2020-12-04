@@ -17,3 +17,5 @@ synclient HorizTwoFingerScroll=1
 #synclient SingleTapTimeout=50
 #synclient FingerLow=10
 #synclient FingerHigh=18
+
+. ~/.xprofile

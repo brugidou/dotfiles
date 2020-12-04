@@ -121,9 +121,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
@@ -229,7 +226,6 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -348,21 +344,18 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Lock screen
-    awful.key({ modkey,           }, "z",      function () awful.util.spawn("sh -c 'xscreensaver-command -lock && systemctl suspend'") end),
+    awful.key({ modkey }, "z", function () awful.util.spawn("sh -c 'xscreensaver-command -lock && systemctl suspend'") end),
     -- print screen
-    awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end)
+    awful.key({ }, "Print", function () awful.util.spawn("flameshot gui") end),
 
     --volume/audio controls
     --awful.key({}, "XF86Tools", function () awful.util.spawn("spotify") end),
     --awful.key({}, "XF86AudioPlay", function () awful.util.spawn("dbus-send 
     ----print-reply --dest=org.mpris.MediaPlayer2.spotify 
     --/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end),
-    --awful.key({}, "XF86AudioMute",      function () awful.util.spawn("amixer 
-    --sset Master toggle") end),
-    --awful.key({}, "XF86AudioLowerVolume",      function () 
-    --awful.util.spawn("amixer sset Master 2dB- unmute") end),
-    --awful.key({}, "XF86AudioRaiseVolume",      function () 
-    --awful.util.spawn("amixer sset Master 2dB+ unmute") end),
+    awful.key({}, "XF86AudioMute",      function () awful.util.spawn("amixer sset Master toggle") end),
+    awful.key({}, "XF86AudioLowerVolume",      function () awful.util.spawn("amixer sset Master 5%- unmute") end),
+    awful.key({}, "XF86AudioRaiseVolume",      function () awful.util.spawn("amixer sset Master 5%+ unmute") end)
     -- Home = chromium
     --awful.key({}, "XF86HomePage", function () awful.util.spawn("chromium") 
     --end)
