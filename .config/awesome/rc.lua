@@ -355,7 +355,8 @@ globalkeys = gears.table.join(
     --/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end),
     awful.key({}, "XF86AudioMute",      function () awful.util.spawn("amixer sset Master toggle") end),
     awful.key({}, "XF86AudioLowerVolume",      function () awful.util.spawn("amixer sset Master 5%- unmute") end),
-    awful.key({}, "XF86AudioRaiseVolume",      function () awful.util.spawn("amixer sset Master 5%+ unmute") end)
+    awful.key({}, "XF86AudioRaiseVolume",      function () awful.util.spawn("amixer sset Master 5%+ unmute") end),
+    awful.key({}, "XF86Display",      function () awful.util.spawn("autorandr -c") end)
     -- Home = chromium
     --awful.key({}, "XF86HomePage", function () awful.util.spawn("chromium") 
     --end)

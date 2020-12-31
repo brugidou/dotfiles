@@ -4,7 +4,7 @@
 apt install fwupd
 fwupdmgr update
 
-apt install xorg lightdm awesome chromium arandr
+apt install xorg lightdm awesome chromium arandr autorandr
 apt install laptop-mode-tools fdpowermon
 
 # Grand sudo access
