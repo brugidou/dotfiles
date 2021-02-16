@@ -17,6 +17,8 @@ sudo -u m.brugidou git submodule update --init
 
 # Network
 apt install network-manager network-manager-vpnc network-manager-openconnect network-manager-gnome network-manager-openconnect-gnome
+# DNS resolver (useful for split DNS for VPN)
+systemctl enable systemd-resolved && systemctl start systemd-resolved
 
 # Install vim plugins
 apt install vim-nox
@@ -67,13 +69,20 @@ apt install dotnet-sdk-3.1
 # Zoom
 wget https://zoom.us/client/latest/zoom_amd64.deb
 apt install ./zoom_amd64.deb
+rm -f ./zoom_amd64.deb
 
 # tooling like add-apt-repository
-apt-get install software-properties-common
+apt install software-properties-common
+
 # Install JDK 8 from Adoptopenjdk and set it by default
 wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
 cat > /etc/apt/sources.list.d/jfrog.list <<EOF
 deb [arch=amd64] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ stretch main
 EOF
-apt-get install adoptopenjdk-8-hotspot
+apt update && apt install adoptopenjdk-8-hotspot
 update-alternatives --set java /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java
+
+# Install signal app
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | apt-key add -
+echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee -a /etc/apt/sources.list.d/signal-xenial.list
+apt update && apt install signal-desktop
