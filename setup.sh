@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# firmwares
-apt install fwupd
+apt update
+
+# firmwares (SOF firmware for sound card)
+apt install fwupd firmware-sof-signed
 fwupdmgr update
 
 apt install xorg lightdm awesome chromium arandr autorandr
@@ -35,8 +37,6 @@ gem install bundler
 # Nodejs + Npm
 apt install npm
 
-# Screensaver
-apt install xscreensaver
 # Screen backlight
 apt install xbacklight
 # Screenshots
@@ -71,9 +71,6 @@ wget https://zoom.us/client/latest/zoom_amd64.deb
 apt install ./zoom_amd64.deb
 rm -f ./zoom_amd64.deb
 
-# tooling like add-apt-repository
-apt install software-properties-common
-
 # Install JDK 8 from Adoptopenjdk and set it by default
 wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
 cat > /etc/apt/sources.list.d/jfrog.list <<EOF
@@ -84,5 +81,10 @@ update-alternatives --set java /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/jav
 
 # Install signal app
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | apt-key add -
-echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee -a /etc/apt/sources.list.d/signal-xenial.list
+echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee /etc/apt/sources.list.d/signal-xenial.list
 apt update && apt install signal-desktop
+
+# Full upgrade and cleanup
+apt update
+apt dist-upgrade
+apt autoremove

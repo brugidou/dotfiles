@@ -344,7 +344,7 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Lock screen
-    awful.key({ modkey }, "z", function () awful.util.spawn("sh -c 'xscreensaver-command -lock && systemctl suspend'") end),
+    awful.key({ modkey }, "z", function () awful.util.spawn("sh -c 'dm-tool lock && systemctl suspend'") end),
     -- print screen
     awful.key({ }, "Print", function () awful.util.spawn("flameshot gui") end),
 
