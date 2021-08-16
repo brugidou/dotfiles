@@ -104,6 +104,8 @@ if which ruby >/dev/null && which gem >/dev/null; then
     export GEM_HOME
 fi
 
+PATH="$PATH:/snap/bin"
+
 within-bundled-project()
 {
     local dir="$(pwd)"

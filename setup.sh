@@ -34,9 +34,6 @@ update-alternatives --set x-terminal-emulator /usr/bin/urxvt
 apt install ruby ruby-dev libyajl-dev build-essential libxml2-dev
 gem install bundler
 
-# Nodejs + Npm
-apt install npm
-
 # Screen backlight
 apt install xbacklight
 # Screenshots
@@ -51,6 +48,8 @@ apt install unattended-upgrades
 
 # Install snaps
 apt install snapd
+# Node + NPM
+snap install node --classic
 # Visual Studio Code
 snap install code --classic
 # IntelliJ
@@ -83,6 +82,10 @@ update-alternatives --set java /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/jav
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee /etc/apt/sources.list.d/signal-xenial.list
 apt update && apt install signal-desktop
+
+# Install docker
+apt install docker.io
+usermod -aG docker m.brugidou
 
 # Full upgrade and cleanup
 apt update
