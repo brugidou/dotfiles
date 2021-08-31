@@ -344,7 +344,7 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Lock screen
-    awful.key({ modkey }, "z", function () awful.util.spawn("sh -c 'dm-tool lock && systemctl suspend'") end),
+    awful.key({ modkey }, "z", function () awful.util.spawn("dm-tool lock") end),
     -- print screen
     awful.key({ }, "Print", function () awful.util.spawn("flameshot gui") end),
 
@@ -356,6 +356,8 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioMute",      function () awful.util.spawn("amixer sset Master toggle") end),
     awful.key({}, "XF86AudioLowerVolume",      function () awful.util.spawn("amixer sset Master 5%- unmute") end),
     awful.key({}, "XF86AudioRaiseVolume",      function () awful.util.spawn("amixer sset Master 5%+ unmute") end),
+    awful.key({}, "XF86MonBrightnessDown",      function () awful.util.spawn("xbacklight -dec 5") end),
+    awful.key({}, "XF86MonBrightnessUp",      function () awful.util.spawn("xbacklight -inc 5") end),
     awful.key({}, "XF86Display",      function () awful.util.spawn("autorandr -c") end)
     -- Home = chromium
     --awful.key({}, "XF86HomePage", function () awful.util.spawn("chromium") 
