@@ -10,11 +10,11 @@ set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'pig.vim'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'VimClojure'
-Bundle 'tpope/vim-fugitive'
-Bundle 'jakar/vim-json'
+" Bundle 'pig.vim'
+" Bundle 'derekwyatt/vim-scala'
+" Bundle 'VimClojure'
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'jakar/vim-json'
 
 filetype plugin indent on
 
