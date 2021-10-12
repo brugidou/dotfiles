@@ -1,0 +1,6 @@
+nm-applet &
+fdpowermon &
+volumeicon &
+# Screenshots
+flameshot &
+systemctl start --user blueman-applet
