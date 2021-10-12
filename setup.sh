@@ -41,6 +41,7 @@ apt install flameshot
 
 # Bluetooth
 apt install blueman
+apt install pipewire-pulse libspa-0.2-bluetooth
 apt install volumeicon-alsa alsa-utils pavucontrol
 
 # Update daily
