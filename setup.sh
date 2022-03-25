@@ -6,7 +6,7 @@ apt update
 apt install fwupd firmware-sof-signed
 fwupdmgr update
 
-apt install xorg lightdm awesome chromium arandr autorandr
+apt install xorg lightdm awesome chromium arandr autorandr dex light-locker
 apt install tlp fdpowermon powertop
 
 # Grand sudo access

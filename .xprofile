@@ -1,6 +1,6 @@
-nm-applet &
 fdpowermon &
 volumeicon &
 # Screenshots
 flameshot &
-systemctl start --user blueman-applet
+# Autostart /etc/xdg/autostart
+dex -a
