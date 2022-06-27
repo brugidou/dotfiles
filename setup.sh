@@ -41,7 +41,8 @@ apt install flameshot
 
 # Bluetooth
 apt install blueman
-apt install pipewire-pulse libspa-0.2-bluetooth
+apt install pipewire-pulse libspa-0.2-bluetooth wireplumber
+# todo: check if need for systemctl --user enable wireplumber
 apt install volumeicon-alsa alsa-utils pavucontrol
 
 # Update daily
