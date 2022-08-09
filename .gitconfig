@@ -6,3 +6,5 @@
 	status = true
 [push]
 	default = simple
+[core]
+	hooksPath = /home/m.brugidou/.git_hooks/
