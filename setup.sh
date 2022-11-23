@@ -18,7 +18,7 @@ apt install krb5-user
 sudo -u m.brugidou git submodule update --init
 
 # Network
-apt install network-manager network-manager-vpnc network-manager-openconnect network-manager-gnome network-manager-openconnect-gnome
+apt install network-manager network-manager-vpnc network-manager-openconnect network-manager-gnome network-manager-openconnect-gnome systemd-resolved
 # DNS resolver (useful for split DNS for VPN)
 systemctl enable systemd-resolved && systemctl start systemd-resolved
 
@@ -45,6 +45,10 @@ apt install pipewire-pulse libspa-0.2-bluetooth wireplumber
 # todo: check if need for systemctl --user enable wireplumber
 apt install volumeicon-alsa alsa-utils pavucontrol
 
+# Criteo printers
+#wget https://criteo.printercloud5.com/client/setup/printerinstallerclient_amd64.deb
+#apt install ./printerinstallerclient_amd64.deb
+
 # Update daily
 apt install unattended-upgrades
 
@@ -65,7 +69,7 @@ mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
 chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg
 chown root:root /etc/apt/sources.list.d/microsoft-prod.list
 apt update
-apt install dotnet-sdk-3.1
+apt install dotnet-sdk-5.0
 
 # Zoom
 wget https://zoom.us/client/latest/zoom_amd64.deb
