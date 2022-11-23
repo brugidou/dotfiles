@@ -357,9 +357,9 @@ globalkeys = gears.table.join(
     --awful.key({}, "XF86AudioPlay", function () awful.util.spawn("dbus-send 
     ----print-reply --dest=org.mpris.MediaPlayer2.spotify 
     --/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end),
-    awful.key({}, "XF86AudioMute",      function () awful.util.spawn("amixer sset Master toggle") end),
-    awful.key({}, "XF86AudioLowerVolume",      function () awful.util.spawn("amixer sset Master 5%- unmute") end),
-    awful.key({}, "XF86AudioRaiseVolume",      function () awful.util.spawn("amixer sset Master 5%+ unmute") end),
+    awful.key({}, "XF86AudioMute",      function () awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
+    awful.key({}, "XF86AudioLowerVolume",      function () awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%") end),
+    awful.key({}, "XF86AudioRaiseVolume",      function () awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%") end),
     awful.key({}, "XF86MonBrightnessDown",      function () awful.util.spawn("xbacklight -dec 5") end),
     awful.key({}, "XF86MonBrightnessUp",      function () awful.util.spawn("xbacklight -inc 5") end),
     awful.key({}, "XF86Display",      function () awful.util.spawn("autorandr -c") end)
