@@ -76,6 +76,12 @@ wget https://zoom.us/client/latest/zoom_amd64.deb
 apt install ./zoom_amd64.deb
 rm -f ./zoom_amd64.deb
 
+wget -O- https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+cat > /etc/apt/sources.list.d/google-chrome.list <<EOF
+deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+EOF
+apt update && apt install google-chrome
+
 # Install JDK 8 from Adoptopenjdk and set it by default
 wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
 cat > /etc/apt/sources.list.d/jfrog.list <<EOF
