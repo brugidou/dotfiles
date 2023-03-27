@@ -50,7 +50,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 --beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.init(awful.util.getdir("config") .. "/themes/awesome-solarized/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -532,7 +532,7 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = true }
     },
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { class = "Chromium" },
+    { rule = { class = "Google" },
         properties = { titlebars_enabled = false } },
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
