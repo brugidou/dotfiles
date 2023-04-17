@@ -505,7 +505,7 @@ awful.rules.rules = {
         },
         class = {
           "Arandr",
-          "Blueman-manager",
+          -- "Blueman-manager",
           "Gpick",
           "Kruler",
           "MessageWin",  -- kalarm.
@@ -531,9 +531,22 @@ awful.rules.rules = {
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = true }
     },
-    -- Set Firefox to always map on the tag named "2" on screen 1.
+    -- Set Google Chrome without title bar.
     { rule = { class = "Google" },
         properties = { titlebars_enabled = false } },
+    -- Zoom: make notifications floating
+    { rule = { class = "zoom", name = "zoom" },
+        properties = {
+            floating = true,
+            titlebars_enabled = false } },
+    { rule_any = {
+        name = { "Zoom - Licensed Account",
+                 "Zoom Webinar",
+                 "Zoom Meeting",
+                 "Settings" } },
+        properties = {
+            floating = false,
+            titlebars_enabled = true } },
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
