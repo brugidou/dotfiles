@@ -10,6 +10,7 @@ set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'github/copilot.vim'
 " Bundle 'pig.vim'
 " Bundle 'derekwyatt/vim-scala'
 " Bundle 'VimClojure'
