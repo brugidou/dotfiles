@@ -46,8 +46,11 @@ apt install pipewire-pulse libspa-0.2-bluetooth wireplumber
 apt install volumeicon-alsa alsa-utils pavucontrol
 
 # Criteo printers
-#wget https://criteo.printercloud5.com/client/setup/printerinstallerclient_amd64.deb
-#apt install ./printerinstallerclient_amd64.deb
+apt install cups
+if ! lpstat -p | grep -q Criteo4th ; then
+  echo Adding printer for Criteo 4th floor...
+  lpadmin -p Criteo4th -m lsb/usr/cupsfilters/Generic-PDF_Printer-PDF.ppd -v socket://172.29.8.38:9100  -L 172.29.8.38
+fi
 
 # Update daily
 apt install unattended-upgrades
