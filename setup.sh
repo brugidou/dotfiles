@@ -32,6 +32,7 @@ apt update
 installPkgs=(
   # firmwares (SOF firmware for sound card)
   fwupd firmware-sof-signed
+  firmware-realtek
 
   xorg lightdm awesome chromium arandr autorandr dex light-locker
   tlp fdpowermon powertop
@@ -64,7 +65,7 @@ installPkgs=(
   # Install snaps
   snapd
 
-  dotnet-sdk-5.0
+  dotnet-sdk-6.0
 
   google-chrome-stable
 
