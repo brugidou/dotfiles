@@ -1,6 +1,6 @@
 [user]
-	name = Maxime Brugidou
-    email = m.brugidou@criteo.com
+	name = m.brugidou
+	email = m.brugidou@criteo.com
 [color]
     diff = auto
 	status = true
@@ -8,3 +8,15 @@
 	default = simple
 [core]
 	hooksPath = /home/m.brugidou/.git_hooks/
+[alias]
+	review = !git push origin HEAD:refs/for/master$1
+	draft = !git push origin HEAD:refs/for/master%wip$1
+	l = log --pretty=format:\"%C(yellow)%h\\\\ %ad%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --date=short
+	ll = log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat
+	lll = log -u
+	diffc = diff --cached HEAD^
+	ca = commit --amend --no-edit --reset-author
+	amend-blind = "!git add -u ; git ca ; git review"
+	ch = checkout
+	st = status
+	hard = reset --hard origin/master
