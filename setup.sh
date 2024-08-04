@@ -3,12 +3,9 @@
 # APT Repositories
 
 # Dotnet
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg
-mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/
-wget -q https://packages.microsoft.com/config/debian/9/prod.list
-mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
-chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg
-chown root:root /etc/apt/sources.list.d/microsoft-prod.list
+wget -q https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
 
 # Google Chrome
 wget -qO- https://dl.google.com/linux/linux_signing_key.pub > /etc/apt/trusted.gpg.d/google-chrome.asc
@@ -65,7 +62,7 @@ installPkgs=(
   # Install snaps
   snapd
 
-  dotnet-sdk-6.0
+  dotnet-sdk-8.0
 
   google-chrome-stable
 
