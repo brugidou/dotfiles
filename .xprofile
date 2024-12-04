@@ -4,3 +4,6 @@ volumeicon &
 flameshot &
 # Autostart /etc/xdg/autostart
 dex -a
+# X compositor needed for Zoom screen sharing
+# https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060527
+xcompmgr -c -l0 -t0 -r0 -o.00  &
