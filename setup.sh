@@ -2,7 +2,7 @@
 
 # APT Repositories
 
-# Dotnet
+# Dotnet and Microsoft Defender
 wget -q https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
@@ -78,6 +78,9 @@ installPkgs=(
   signal-desktop
 
   docker.io
+
+  # Microsoft Defender
+  mdatp
 )
 # remove jdk 8
 apt remove adoptopenjdk-8-hotspot
@@ -101,6 +104,8 @@ sudo -u m.brugidou vim +BundleInstall +q
 
 # Setup urxvt
 update-alternatives --set x-terminal-emulator /usr/bin/urxvt
+# Set vim as default editor
+update-alternatives --set editor /usr/bin/vim.nox
 
 # Setup ruby
 gem install bundler
@@ -129,3 +134,47 @@ usermod -aG docker m.brugidou
 # Full upgrade and cleanup
 apt dist-upgrade
 apt autoremove
+
+#
+# TODO: set up intune for Debian, for now this is done manually
+#
+cat > /etc/apt/sources.list.d/microsoft-intune.list <<EOF
+# for intune-portal
+#deb [arch=amd64] https://packages.microsoft.com/ubuntu/22.04/prod jammy main
+# for old jq and other libs
+#deb [arch=amd64] http://deb.debian.org/debian/ stable main
+# for openjdk-11-jre
+#deb [arch=amd64] http://deb.debian.org/debian/ oldstable main
+EOF
+
+# Enable oldstable
+# apt install openjdk-11-jre
+# update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64
+
+# Enable stable
+# apt install jq=1.6-2.1 libjq=1.6-2.1 --allow-downgrades
+# apt-mark hold jq
+# apt install libicu72 libjavascriptcoregtk-4.0-18 libwebkit2gtk-4.0-37
+
+# Enable microsoft ubuntu repo
+# apt install microsoft-identity-broker=1.7.0
+# apt-mark hold microsoft-identity-broker
+# apt install intune-portal
+
+# Don't forget to remove lsb_release and set /etc/os-release to
+wget -O /etc/os-release https://raw.githubusercontent.com/chef/os_release/refs/heads/main/ubuntu_2204
+# Fix uname -a kernel patch level
+
+# And tweak gsettings to have:
+# org.gnome.desktop.screensaver lock-enabled true
+# org.gnome.desktop.screensaver idle-activation-enabled true
+# org.gnome.desktop.screensaver lock-delay uint32 0
+# org.gnome.desktop.session idle-delay uint32 300
+
+
+# Defender onboarding
+if ! mdatp health --field healthy  | grep -q true; then
+  wget -O /tmp/MicrosoftDefenderATPOnboardingLinuxServer.py https://repo.criteois.com/master/MicrosoftDefenderATPOnboardingLinuxServer.py
+  python3 /tmp/MicrosoftDefenderATPOnboardingLinuxServer.py
+fi
+# check status with mdatp health
