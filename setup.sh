@@ -169,6 +169,17 @@ EOF
 # Don't forget to remove lsb_release and set /etc/os-release to
 wget -O /etc/os-release https://raw.githubusercontent.com/chef/os_release/refs/heads/main/ubuntu_2204
 # Fix uname -a kernel patch level
+if ! grep 0-19 /usr/bin/uname; then
+  cp /usr/bin/uname{,.oiriginal}
+  cat > /usr/bin/uname <<EOF
+if [ $1 == "-r"] ; then
+  echo "6.5.0-19"
+else
+  /usr/bin/uname.backup $@
+fi
+EOF
+  chmod +x /usr/bin/uname
+fi
 
 # And tweak gsettings to have:
 # org.gnome.desktop.screensaver lock-enabled true
