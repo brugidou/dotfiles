@@ -12,6 +12,10 @@ wget -qO- https://packages.microsoft.com/keys/microsoft.asc > /etc/apt/trusted.g
 cat > /etc/apt/sources.list.d/microsoft-edge.list <<EOF
 deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main
 EOF
+# VS Code
+cat > /etc/apt/sources.list.d/vscode.list <<EOF
+deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main
+EOF
 
 # Google Chrome
 wget -qO- https://dl.google.com/linux/linux_signing_key.pub > /etc/apt/trusted.gpg.d/google-chrome.asc
@@ -81,6 +85,9 @@ installPkgs=(
 
   # Microsoft Defender
   mdatp
+
+  # VS Code
+  code
 )
 # remove jdk 8
 apt remove adoptopenjdk-8-hotspot
@@ -118,8 +125,6 @@ fi
 
 # Node + NPM
 snap install node --classic
-# Visual Studio Code
-snap install code --classic
 # IntelliJ
 snap install intellij-idea-community --classic
 
