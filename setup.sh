@@ -24,10 +24,6 @@ deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
 EOF
 
 
-# Remove JDK 8 from Adoptopenjdk
-rm -f /etc/apt/trusted.gpg.d/adoptopenjdk.asc
-rm -f /etc/apt/sources.list.d/jfrog.list
-
 # Signal app
 wget -qO- https://updates.signal.org/desktop/apt/keys.asc > /etc/apt/trusted.gpg.d/signal.asc
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee /etc/apt/sources.list.d/signal-xenial.list
@@ -89,8 +85,6 @@ installPkgs=(
   # VS Code
   code
 )
-# remove jdk 8
-apt remove adoptopenjdk-8-hotspot
 
 apt install ${installPkgs[@]}
 
