@@ -172,6 +172,7 @@ wget -O /etc/os-release https://raw.githubusercontent.com/chef/os_release/refs/h
 if ! grep 0-19 /usr/bin/uname; then
   cp /usr/bin/uname{,.backup}
   cat > /usr/bin/uname <<'EOF'
+#!/bin/bash
 if [ "$1" == "-r" ] ; then
   echo "6.5.0-19"
 else
