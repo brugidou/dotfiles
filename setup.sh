@@ -170,9 +170,9 @@ EOF
 wget -O /etc/os-release https://raw.githubusercontent.com/chef/os_release/refs/heads/main/ubuntu_2204
 # Fix uname -a kernel patch level
 if ! grep 0-19 /usr/bin/uname; then
-  cp /usr/bin/uname{,.oiriginal}
-  cat > /usr/bin/uname <<EOF
-if [ $1 == "-r"] ; then
+  cp /usr/bin/uname{,.backup}
+  cat > /usr/bin/uname <<'EOF'
+if [ "$1" == "-r" ] ; then
   echo "6.5.0-19"
 else
   /usr/bin/uname.backup $@
