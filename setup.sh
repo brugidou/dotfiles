@@ -107,7 +107,7 @@ sudo -u m.brugidou git submodule update --init
 systemctl enable systemd-resolved && systemctl start systemd-resolved
 
 # Install vim plugins
-sudo -u m.brugidou vim +BundleInstall +q
+sudo -u m.brugidou vim +BundleInstall +q +q
 
 # Setup urxvt
 update-alternatives --set x-terminal-emulator /usr/bin/urxvt
