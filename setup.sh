@@ -3,7 +3,7 @@
 # APT Repositories
 
 # Dotnet and Microsoft Defender
-wget -q https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+wget -q https://packages.microsoft.com/config/debian/13/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 
@@ -139,21 +139,14 @@ apt autoremove
 #
 cat > /etc/apt/sources.list.d/microsoft-intune.list <<EOF
 # for intune-portal
-#deb [arch=amd64] https://packages.microsoft.com/ubuntu/22.04/prod jammy main
-# for old jq and other libs
-#deb [arch=amd64] http://deb.debian.org/debian/ stable main
+#deb [arch=amd64] https://packages.microsoft.com/ubuntu/24.04/prod noble main
 # for openjdk-11-jre
-#deb [arch=amd64] http://deb.debian.org/debian/ oldstable main
+#deb [arch=amd64] http://deb.debian.org/debian/ unstable main
 EOF
 
-# Enable oldstable
+# Enable unstable
 # apt install openjdk-11-jre
-# update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64
-
-# Enable stable
-# apt install jq=1.6-2.1 libjq=1.6-2.1 --allow-downgrades
-# apt-mark hold jq
-# apt install libicu72 libjavascriptcoregtk-4.0-18 libwebkit2gtk-4.0-37
+# update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
 
 # Enable microsoft ubuntu repo
 # apt install microsoft-identity-broker=1.7.0
@@ -161,7 +154,7 @@ EOF
 # apt install intune-portal
 
 # Don't forget to remove lsb_release and set /etc/os-release to
-wget -O /etc/os-release https://raw.githubusercontent.com/chef/os_release/refs/heads/main/ubuntu_2204
+wget -O /etc/os-release https://raw.githubusercontent.com/chef/os_release/refs/heads/main/ubuntu_2404
 # Fix uname -a kernel patch level
 if ! grep 0-19 /usr/bin/uname; then
   cp /usr/bin/uname{,.backup}
