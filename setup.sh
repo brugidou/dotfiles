@@ -31,6 +31,7 @@ echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee
 apt update
 
 installPkgs=(
+  psmisc
   # firmwares (SOF firmware for sound card)
   fwupd firmware-sof-signed
   firmware-realtek
