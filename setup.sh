@@ -31,7 +31,7 @@ echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee
 apt update
 
 installPkgs=(
-  psmisc
+  psmisc curl
   # firmwares (SOF firmware for sound card)
   fwupd firmware-sof-signed
   firmware-realtek
@@ -80,6 +80,9 @@ installPkgs=(
 
   docker.io
 
+  nodejs
+  npm
+
   # Microsoft Defender
   mdatp
 
@@ -119,7 +122,7 @@ if ! lpstat -p | grep -q Criteo4th ; then
 fi
 
 # Node + NPM
-snap install node --classic
+snap remove node
 # IntelliJ
 snap install intellij-idea-community --classic
 
