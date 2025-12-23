@@ -9,8 +9,8 @@
 [core]
 	hooksPath = /home/m.brugidou/.git_hooks/
 [alias]
-	review = !git push origin HEAD:refs/for/master$1
-	draft = !git push origin HEAD:refs/for/master%wip$1
+	review = "!f() { git push origin HEAD:refs/for/master%$1; }; f"
+	draft = "!f() { git push origin HEAD:refs/for/master%wip,$1; }; f"
 	l = log --pretty=format:\"%C(yellow)%h\\\\ %ad%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --date=short
 	ll = log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat
 	lll = log -u
@@ -20,3 +20,5 @@
 	ch = checkout
 	st = status
 	hard = reset --hard origin/master
+[url "gerrit:"]
+	insteadOf = https://review.crto.in/a/

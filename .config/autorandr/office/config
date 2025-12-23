@@ -7,7 +7,7 @@ off
 output DP-4
 off
 output DP-1
-crtc 2
+crtc 1
 mode 3440x1440
 pos 0x0
 rate 59.97
@@ -19,7 +19,7 @@ x-prop-non_desktop 0
 output eDP-1
 crtc 0
 mode 1920x1200
-pos 715x1440
+pos 760x1440
 primary
 rate 60.00
 x-prop-broadcast_rgb Automatic
