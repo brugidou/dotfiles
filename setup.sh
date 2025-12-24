@@ -134,6 +134,11 @@ rm -f ./zoom_amd64.deb
 # Install docker
 usermod -aG docker m.brugidou
 
+# Install rclone
+wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
+apt install ./rclone-current-linux-amd64.deb
+rm -f ./rclone-current-linux-amd64.deb
+
 # Full upgrade and cleanup
 apt dist-upgrade
 apt autoremove
