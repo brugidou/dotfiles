@@ -145,6 +145,10 @@ wget https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_am
 apt install ./chatgpt_amd64.deb
 rm -f ./chatgpt_amd64.deb
 
+# Install claude & codex CLI
+sudo -u m.brugidou bash -c 'curl -fsSL https://claude.ai/install.sh | bash'
+sudo -u m.brugidou bash -c 'curl -fsSL https://chatgpt.com/codex/install.sh | sh'
+
 # Full upgrade and cleanup
 apt dist-upgrade
 apt autoremove
