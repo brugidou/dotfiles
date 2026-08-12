@@ -71,6 +71,7 @@ installPkgs=(
   snapd
 
   dotnet-sdk-8.0
+  dotnet-sdk-10.0
 
   google-chrome-stable
 
@@ -138,6 +139,11 @@ usermod -aG docker m.brugidou
 wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
 apt install ./rclone-current-linux-amd64.deb
 rm -f ./rclone-current-linux-amd64.deb
+
+# Install codex desktop
+wget https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb
+apt install ./chatgpt_amd64.deb
+rm -f ./chatgpt_amd64.deb
 
 # Full upgrade and cleanup
 apt dist-upgrade
