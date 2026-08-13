@@ -87,7 +87,7 @@ URxvt.cutchars: "`\"'&()*,:;<=>?[\\]^{|}$"
 URxvt.scrollBar: false
 URxvt.visualBell: true
 URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: chromium
+URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 Urxvt.mouseWheelScrollPage: true
 URxvt.saveLines: 200000
