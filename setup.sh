@@ -42,6 +42,29 @@ installPkgs=(
   xcompmgr
   tlp fdpowermon powertop
 
+  # Wayland / sway session.
+  # The X11 + awesome entries above are deliberately kept: both sessions stay
+  # in the lightdm menu so awesome remains a working fallback.
+  sway swaylock swayidle swaybg
+  # Status bar (replaces the awesome wibar)
+  waybar
+  # Wayland-native terminal; urxvt is X11-only and blurs under Xwayland
+  foot
+  # Launcher (replaces awesome's prompt box + menubar)
+  wofi
+  # Automatic output profile switching on hotplug; the Wayland counterpart to
+  # autorandr. Profiles live in ~/.config/kanshi/config.
+  kanshi
+  # Screenshots: grim+slurp are the Wayland equivalent of flameshot, which
+  # needs portal cooperation to capture under Wayland
+  grim slurp wl-clipboard
+  # Screen backlight under Wayland: xbacklight drives the X RandR backlight
+  # property and does nothing here
+  brightnessctl
+  # Portals. -wlr is the sway backend and is what makes screensharing work
+  # under Wayland (the Wayland counterpart to the xcompmgr note above).
+  xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr
+
   sudo krb5-user
 
   # Network

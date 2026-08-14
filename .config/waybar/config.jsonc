@@ -1,0 +1,96 @@
+// Waybar — replaces the awesome wibox/wibar
+{
+    "layer": "top",
+    "position": "top",
+    "height": 26,
+
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["cpu", "memory", "temperature",
+                      "pulseaudio", "backlight", "battery",
+                      "clock", "tray", "custom/power"],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{name}"
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "sway/window": {
+        "max-length": 80
+    },
+
+    // only visible when something is actually stashed
+    "sway/scratchpad": {
+        "format": "scr {count}",
+        "show-empty": false,
+        "tooltip-format": "{app}: {title}"
+    },
+
+    "cpu": {
+        "format": "cpu {usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "mem {percentage}%",
+        "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+    },
+
+    // coretemp "Package id 0"; hwmon-path-abs survives hwmonN renumbering
+    "temperature": {
+        "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+        "input-filename": "temp1_input",
+        "critical-threshold": 85,
+        "format": "tmp {temperatureC}°C"
+    },
+
+    // wpctl-backed; pactl is not installed on this machine
+    "pulseaudio": {
+        "format": "vol {volume}%",
+        "format-muted": "muted",
+        "format-bluetooth": "bt {volume}%",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "scroll-step": 5
+    },
+
+    "backlight": {
+        "format": "bri {percent}%",
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "bat {capacity}%",
+        "format-charging": "chg {capacity}%",
+        "format-plugged": "ac {capacity}%"
+    },
+
+    "clock": {
+        "format": "{:%a %d %b  %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
+
+    "tray": {
+        "spacing": 8
+    },
+
+    // GtkMenu on click — nothing fires until you pick an entry
+    "custom/power": {
+        "format": "pwr",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "/usr/share/waybar/custom_modules/power_menu.xml",
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
+    }
+}

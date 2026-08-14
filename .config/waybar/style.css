@@ -1,0 +1,58 @@
+/* Solarized dark, matching themes/awesome-solarized/dark */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: monospace;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #002b36;
+    color: #839496;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background: #002b36;
+    color: #586e75;
+}
+
+#workspaces button.focused {
+    background: #268bd2;
+    color: #fdf6e3;
+}
+
+#workspaces button.urgent {
+    background: #dc322f;
+    color: #fdf6e3;
+}
+
+#mode {
+    background: #b58900;
+    color: #002b36;
+    padding: 0 8px;
+}
+
+#window {
+    color: #93a1a1;
+}
+
+#pulseaudio, #backlight, #battery, #network, #clock, #tray,
+#cpu, #memory, #temperature, #custom-power {
+    padding: 0 10px;
+}
+
+#scratchpad {
+    padding: 0 8px;
+    color: #6c71c4;
+}
+
+#clock       { color: #93a1a1; }
+#battery.warning  { color: #b58900; }
+#battery.critical { color: #dc322f; }
+#network.disconnected { color: #dc322f; }
+
+#temperature.critical { color: #dc322f; }
+#custom-power { color: #657b83; }
+#custom-power:hover { color: #dc322f; }

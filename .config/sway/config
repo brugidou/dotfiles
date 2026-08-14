@@ -1,0 +1,273 @@
+# Config for sway
+#
+# Read `man 5 sway` for a complete reference.
+# Migrated from awesome 4.3; see MIGRATION.md in this directory.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Your preferred terminal emulator
+set $term foot
+# Your preferred application launcher
+set $menu wofi --show drun
+# The same launcher in $PATH mode, for commands with no .desktop entry
+set $runner wofi --show run
+# Your preferred screen locker
+set $lock swaylock -f -c 002b36
+
+### Output configuration
+#
+# Output geometry is not set here: kanshi owns it and switches profiles on
+# hotplug. Profiles live in ~/.config/kanshi/config.
+exec kanshi
+
+# Default wallpaper
+output * background #002b36 solid_color
+
+### Input configuration
+#
+# Read `man 5 sway-input` for more information about this section.
+input type:keyboard {
+    xkb_layout us
+    xkb_model pc105
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+}
+
+### Idle configuration
+#
+# This will lock your screen after 600 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle -w \
+    timeout 600 "$lock" \
+    timeout 900 'swaymsg "output * power off"' \
+        resume 'swaymsg "output * power on"' \
+    before-sleep "$lock"
+
+### Input method
+#
+# Env vars live in ~/.config/environment.d/90-input-method.conf so GTK/Qt apps
+# pick them up; this only starts the daemon.
+exec ibus-daemon -drxR
+
+### Tray applets
+#
+# --indicator forces the StatusNotifierItem protocol; the default GtkStatusIcon
+# mode draws nothing on Wayland. Waybar's "tray" module is the SNI host.
+exec nm-applet --indicator
+exec blueman-applet
+
+### Appearance
+#
+# class                 border  backgr. text    indicator child_border
+client.focused          #268bd2 #268bd2 #fdf6e3 #2aa198   #268bd2
+client.focused_inactive #073642 #073642 #839496 #073642   #073642
+client.unfocused        #002b36 #002b36 #586e75 #002b36   #002b36
+client.urgent           #dc322f #dc322f #fdf6e3 #dc322f   #dc322f
+
+default_border pixel 2
+gaps inner 4
+font pango:monospace 10
+
+### Status Bar
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    swaybar_command waybar
+}
+
+### Key bindings
+#
+# Basics:
+#
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Start your launcher
+bindsym $mod+d exec $runner
+
+# Start your launcher in .desktop mode
+bindsym $mod+w exec $menu
+
+# Lock the screen
+bindsym $mod+z exec $lock
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning \
+    -m 'Exit sway and end your session?' \
+    -B 'Exit' 'swaymsg exit'
+#
+# Moving around:
+#
+# Move your focus around
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
+bindsym $mod+$right focus right
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+# Move focus to the most recently urgent window
+bindsym $mod+u [urgent=latest] focus
+
+# Move focus to the previously focused window
+bindsym $mod+Tab focus prev sibling
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left  move left
+bindsym $mod+Shift+$down  move down
+bindsym $mod+Shift+$up    move up
+bindsym $mod+Shift+$right move right
+
+# Move the focused window to the next output
+bindsym $mod+o move container to output right
+#
+# Window state:
+#
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen toggle
+# Sway has no maximize distinct from fullscreen
+bindsym $mod+m fullscreen toggle
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Control+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+Control+m focus mode_toggle
+
+# Keep the current focus visible on every workspace
+bindsym $mod+t sticky toggle
+
+# Move the currently focused window to the scratchpad, and show it again
+bindsym $mod+n move scratchpad
+bindsym $mod+Control+n scratchpad show
+#
+# Layout stuff:
+#
+# Cycle the current container through the layout styles
+bindsym $mod+space       layout toggle split tabbed stacking
+bindsym $mod+Shift+space layout toggle stacking tabbed split
+
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+v splitv
+bindsym $mod+b splith
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left  resize shrink width 10px
+    bindsym $down  resize grow height 10px
+    bindsym $up    resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left  resize shrink width 10px
+    bindsym Down  resize grow height 10px
+    bindsym Up    resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+#
+# Workspaces:
+#
+# Switch to the previous or next workspace
+bindsym $mod+Left  workspace prev
+bindsym $mod+Right workspace next
+
+# Switch to the last used workspace
+bindsym $mod+Escape workspace back_and_forth
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+
+# Move the whole current workspace to the next output
+bindsym $mod+Shift+o move workspace to output right
+
+# Move your focus between outputs
+bindsym $mod+Control+$down focus output right
+bindsym $mod+Control+$up   focus output left
+#
+# Utilities:
+#
+# Special keys to adjust volume via PipeWire
+bindsym --locked XF86AudioMute        exec wpctl set-mute   @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioMicMute     exec wpctl set-mute   @DEFAULT_AUDIO_SOURCE@ toggle
+
+# Special keys to adjust brightness via brightnessctl
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp   exec brightnessctl set +5%
+
+# Special keys to take a screenshot with grim: region select, then whole output
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
+bindsym Shift+Print exec grim - | wl-copy
+
+# Special key to re-apply the kanshi output profile when hotplug guesses wrong
+bindsym XF86Display exec kanshictl reload
+
+### Window rules
+#
+# Read `man 5 sway` for the criteria syntax.
+for_window [app_id="^.*"] inhibit_idle fullscreen
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+
+# Float portal dialogs, so a file chooser cannot tile into your layout
+for_window [app_id="xdg-desktop-portal-gtk"] floating enable
+
+# nm-applet's own windows: the openconnect SSO prompt and the connection editor
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="nm-openconnect-auth-dialog"] floating enable
+for_window [title="^Authenticate"] floating enable
+
+include /etc/sway/config.d/*
