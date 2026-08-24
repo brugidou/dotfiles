@@ -58,6 +58,10 @@ installPkgs=(
   # Screenshots: grim+slurp are the Wayland equivalent of flameshot, which
   # needs portal cooperation to capture under Wayland
   grim slurp wl-clipboard
+  # Notification daemon. Without something owning org.freedesktop.Notifications,
+  # blueman-applet falls back to a plain centred Gtk.MessageDialog that never
+  # expires, and Chrome draws its own in-page message center.
+  mako-notifier
   # Screen backlight under Wayland: xbacklight drives the X RandR backlight
   # property and does nothing here
   brightnessctl

@@ -1,0 +1,47 @@
+# Config for mako, the notification daemon for the sway session.
+#
+# Read `man 5 mako` for a complete reference.
+#
+# Why this exists: with nothing owning org.freedesktop.Notifications, senders
+# fall back to drawing their own windows. blueman-applet in particular drops to
+# a plain Gtk.MessageDialog (see _NotificationDialog in
+# /usr/lib/python3/dist-packages/blueman/gui/Notification.py) which is centred
+# and has no expiry at all, so headset connect/battery popups pile up in the
+# middle of the screen. Chrome does the same with its in-page message center.
+
+# Top-right, clear of waybar and of the tray applet menus
+anchor=top-right
+margin=10
+# Above regular windows and fullscreen video, like the Chrome popups were
+layer=overlay
+max-visible=5
+
+font=monospace 12
+width=380
+height=150
+padding=12
+border-size=2
+border-radius=4
+
+# Solarized dark, matching the sway client.* colours
+background-color=#002b36
+text-color=#839496
+border-color=#268bd2
+progress-color=over #073642
+
+default-timeout=5000
+ignore-timeout=0
+
+[urgency=low]
+border-color=#073642
+default-timeout=3000
+
+[urgency=critical]
+border-color=#dc322f
+text-color=#fdf6e3
+# Critical notifications must be dismissed explicitly
+default-timeout=0
+
+# blueman's connect/disconnect/battery chatter is informational; keep it short
+[app-name=blueman]
+default-timeout=3000

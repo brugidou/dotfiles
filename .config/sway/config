@@ -62,6 +62,14 @@ exec swayidle -w \
 # pick them up; this only starts the daemon.
 exec ibus-daemon -drxR
 
+### Notifications
+#
+# mako owns org.freedesktop.Notifications. Without it, senders fall back to
+# drawing their own toplevels: blueman-applet uses a centred Gtk.MessageDialog
+# that never expires, and Chrome draws its own message center. Config lives in
+# ~/.config/mako/config.
+exec mako
+
 ### Tray applets
 #
 # --indicator forces the StatusNotifierItem protocol; the default GtkStatusIcon
@@ -135,8 +143,6 @@ bindsym $mod+Shift+$down  move down
 bindsym $mod+Shift+$up    move up
 bindsym $mod+Shift+$right move right
 
-# Move the focused window to the next output
-bindsym $mod+o move container to output right
 #
 # Window state:
 #
@@ -228,12 +234,30 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 
-# Move the whole current workspace to the next output
-bindsym $mod+Shift+o move workspace to output right
+# Multi-monitor: same hjkl directions, three levels of Ctrl.
+# All four directions are bound on purpose -- kanshi stacks the outputs
+# vertically in the office and home profiles but side by side in mesnil, and
+# `output <direction>` only resolves a monitor that is really in that
+# direction. Binding the full set means the right pair always works and the
+# other two are harmless no-ops.
 
 # Move your focus between outputs
-bindsym $mod+Control+$down focus output right
-bindsym $mod+Control+$up   focus output left
+bindsym $mod+Control+$left  focus output left
+bindsym $mod+Control+$down  focus output down
+bindsym $mod+Control+$up    focus output up
+bindsym $mod+Control+$right focus output right
+
+# Move the focused window to another output
+bindsym $mod+Control+Shift+$left  move container to output left
+bindsym $mod+Control+Shift+$down  move container to output down
+bindsym $mod+Control+Shift+$up    move container to output up
+bindsym $mod+Control+Shift+$right move container to output right
+
+# Move the whole current workspace to another output
+bindsym $mod+Mod1+$left  move workspace to output left
+bindsym $mod+Mod1+$down  move workspace to output down
+bindsym $mod+Mod1+$up    move workspace to output up
+bindsym $mod+Mod1+$right move workspace to output right
 #
 # Utilities:
 #
@@ -269,5 +293,16 @@ for_window [app_id="xdg-desktop-portal-gtk"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="nm-openconnect-auth-dialog"] floating enable
 for_window [title="^Authenticate"] floating enable
+
+# Chrome's notification popups. Kept as a safety net: mako should now take the
+# org.freedesktop.Notifications path, but if Chrome ever falls back to drawing
+# its own message center each popup maps as a real toplevel that sway would tile
+# into the layout.
+# Chromium gives these an empty app_id (the title is still empty at map time, so
+# it cannot be part of the criteria). Sticky, so a popup follows you across
+# workspaces, and parked top-right rather than centred.
+for_window [app_id="^$"] floating enable, sticky enable, border none, move position 74 ppt 4 ppt
+# ...and it must never steal focus from what you are typing into
+no_focus [app_id="^$"]
 
 include /etc/sway/config.d/*
