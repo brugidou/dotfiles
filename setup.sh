@@ -36,20 +36,27 @@ installPkgs=(
   fwupd firmware-sof-signed
   firmware-realtek
 
-  xorg lightdm awesome chromium arandr autorandr dex light-locker
-  # Needed for zoom screensharing
-  # https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060527
-  xcompmgr
+  # Login manager. lightdm went out with Xorg: its GTK greeter is an X client
+  # and needs an X server of its own. greetd + tuigreet run on the VT and hand
+  # straight over to sway; the seat config is written further down.
+  greetd tuigreet
   tlp fdpowermon powertop
 
-  # Wayland / sway session.
-  # The X11 + awesome entries above are deliberately kept: both sessions stay
-  # in the lightdm menu so awesome remains a working fallback.
+  # Wayland / sway session. It is now the only session -- Xorg, awesome and
+  # their X-only helpers (arandr, autorandr, dex, light-locker, xcompmgr,
+  # urxvt, xbacklight, flameshot, volumeicon) are gone. Xwayland is
+  # deliberately not installed either; add it if an X-only app is ever needed.
   sway swaylock swayidle swaybg
   # Status bar (replaces the awesome wibar)
   waybar
   # Wayland-native terminal; urxvt is X11-only and blurs under Xwayland
   foot
+  # foot's font (font=Terminus in ~/.config/foot/foot.ini). Listed explicitly
+  # because it used to come in only as an auto-installed dep of the X font
+  # stack, so `apt autoremove` swept it away with Xorg. The -otb build also
+  # ships the fontconfig rule that whitelists Terminus against Debian's
+  # default 70-no-bitmaps-except-emoji.conf; without it Terminus is ignored.
+  fonts-terminus-otb
   # Launcher (replaces awesome's prompt box + menubar)
   wofi
   # Automatic output profile switching on hotplug; the Wayland counterpart to
@@ -75,19 +82,13 @@ installPkgs=(
   network-manager network-manager-vpnc network-manager-openconnect network-manager-gnome network-manager-openconnect-gnome systemd-resolved
 
   vim-nox
-  rxvt-unicode xfonts-terminus
   ruby ruby-dev libyajl-dev build-essential libxml2-dev
-
-  # Screen backlight
-  xbacklight
-  # Screenshots
-  flameshot
 
   # Bluetooth
   blueman
   pipewire-pulse libspa-0.2-bluetooth wireplumber
   # todo: check if need for systemctl --user enable wireplumber
-  volumeicon-alsa alsa-utils pavucontrol
+  alsa-utils pavucontrol
 
   cups
 
@@ -132,11 +133,26 @@ sudo -u m.brugidou git submodule update --init
 # DNS resolver (useful for split DNS for VPN)
 systemctl enable systemd-resolved && systemctl start systemd-resolved
 
+# Login manager: tuigreet launching sway directly. This overwrites the agreety
+# default shipped by the greetd package. Keep vt = 7: Debian's greetd.service
+# only declares Conflicts=getty@tty7, so any other VT leaves greetd fighting a
+# getty for the console.
+mkdir -p /etc/greetd
+cat > /etc/greetd/config.toml <<EOF
+[terminal]
+vt = 7
+
+[default_session]
+command = "tuigreet --time --remember --cmd sway"
+user = "_greetd"
+EOF
+systemctl enable greetd
+
 # Install vim plugins
 sudo -u m.brugidou vim +BundleInstall +q +q
 
-# Setup urxvt
-update-alternatives --set x-terminal-emulator /usr/bin/urxvt
+# Default terminal (the alternative keeps its X-era name under Wayland)
+update-alternatives --set x-terminal-emulator /usr/bin/foot
 # Set vim as default editor
 update-alternatives --set editor /usr/bin/vim.nox
 

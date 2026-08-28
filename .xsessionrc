@@ -1,4 +1,0 @@
-# Solarized colors
-xrdb -merge ~/.Xresources
-
-. ~/.xprofile
