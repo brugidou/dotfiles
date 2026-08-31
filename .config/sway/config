@@ -53,7 +53,7 @@ input type:touchpad {
 exec swayidle -w \
     timeout 600 "$lock" \
     timeout 900 'swaymsg "output * power off"' \
-        resume 'swaymsg "output * power on"' \
+        resume 'swaymsg "output * enable"; swaymsg "output * power on"' \
     before-sleep "$lock"
 
 ### Input method
