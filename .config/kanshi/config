@@ -23,20 +23,17 @@
 
 # --- office: Lenovo ultrawide + laptop underneath -------------------------
 # autorandr: DP-1 3440x1440 @0x0, eDP-1 1920x1200 @760x1440
-# centred under the ultrawide: (3440-1280)/2 = 1080
+# centred under the ultrawide: (3440-1920)/2 = 760
 profile office {
     output DP-1  mode 3440x1440@59.97Hz position 0,0       scale 1
-    output eDP-1 mode 1920x1200@60Hz    position 1080,1440 scale 1
+    output eDP-1 mode 1920x1200@60Hz    position 760,1440  scale 1
 }
 
 # --- home: AOC 24" 1080p above, laptop below -----------------------------
 # autorandr: HDMI-1 1920x1080 @0x0, eDP-1 1920x1200 @0x1080
-# The old x=0 was already centring (both panels were 1920 wide).
-# centring is now (1920-1280)/2 = 320.
-# AOC 24B1W1 is ~92 DPI, so scale 1 is correct for it.
 profile home {
     output "AOC 24B1W1 NHTL1BA004888" mode 1920x1080@60Hz position 0,0      scale 1
-    output eDP-1                      mode 1920x1200@60Hz position 320,1080 scale 1
+    output eDP-1                      mode 1920x1200@60Hz position 0,1080 scale 1
 }
 
 # --- mesnil: AOC 27" 1080p to the right of the laptop --------------------
